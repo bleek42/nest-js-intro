@@ -1,14 +1,16 @@
+import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { v4 as uuidV4 } from 'uuid';
-
-import { Product } from './product.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Product } from '../Interfaces/product.interface';
+// import {} from
 
 @Injectable()
 export class ProductsService {
-  products: Product[] = [];
+  constructor(
+    @InjectModel('product') private readonly productModel: Model<Product>,
+  ) {}
 
-  insertProduct(name: string, price: number, description: string, image: any) {
-    const newProd = new Product(uuidV4(), name, price, description, image);
-    this.products.push(newProd);
+  async getProducts(): Promise<Product[]> {
+    return await this.productModel.find().exec();
   }
 }
