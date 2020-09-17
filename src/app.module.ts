@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
+
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+// import {} from './products';
+import { HttpErrorFilter } from './shared/http-error.filter';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpErrorFilter,
+    },
+  ],
+  exports: [],
 })
 export class AppModule {}
