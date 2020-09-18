@@ -2,6 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ProductType {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String!
+}
+
 type Query {
-  hello: String!
+  products: [ProductType!]!
+  product(id: String!): ProductType!
+}
+
+type Mutation {
+  newProduct(input: ProductInput!): ProductType!
+}
+
+input ProductInput {
+  name: String!
+  price: Float!
+  description: String!
 }

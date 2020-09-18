@@ -13,7 +13,7 @@ import { HttpErrorFilter } from './shared/http-error.filter';
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
-    MongooseModule.forRoot('mongodb://localhost/nestjs'),
+    MongooseModule.forRoot('mongodb://localhost:27017/nestjs'),
   ],
   controllers: [AppController],
   providers: [
